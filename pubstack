@@ -1,0 +1,36 @@
+#!/usr/bin/env php
+<?php
+
+if (file_exists(__DIR__.'/vendor/autoload.php')) {
+  require __DIR__.'/vendor/autoload.php';
+}
+else {
+  require __DIR__.'/../../autoload.php';
+}
+
+$_ENV['HOME'] = getenv('HOME');
+
+$pubstack_path = getenv('PUBSTACK_PATH');
+if (!$pubstack_path) {
+  $pubstack_path = $_ENV['HOME'] . '/.pubstack';
+}
+$_ENV['PUBSTACK_PATH'] = $pubstack_path;
+
+$repo = getenv('PUBSTACK_REMOTE');
+if (!$repo) {
+  $repo = 'https://github.com/nbcutechnology/pubstack';
+}
+$_ENV['PUBSTACK_REPO'] = $repo;
+
+$_ENV['VAGRANT_DOTFILE_PATH'] = $_ENV['PUBSTACK_PATH'] . '/.vagrant';
+
+$app = new Symfony\Component\Console\Application('Pubstack Shell', 'v1.0.0');
+$app->add(new nbcutechnology\Pubstack\ConfigureCommand());
+$app->add(new nbcutechnology\Pubstack\HaltCommand());
+$app->add(new nbcutechnology\Pubstack\InitCommand());
+$app->add(new nbcutechnology\Pubstack\ProvisionCommand());
+$app->add(new nbcutechnology\Pubstack\SshCommand());
+$app->add(new nbcutechnology\Pubstack\StatusCommand());
+$app->add(new nbcutechnology\Pubstack\UpCommand());
+$app->add(new nbcutechnology\Pubstack\UpdateCommand());
+$app->run();
