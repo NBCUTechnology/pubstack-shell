@@ -24,7 +24,7 @@ $_ENV['PUBSTACK_REPO'] = $repo;
 
 $_ENV['VAGRANT_DOTFILE_PATH'] = $_ENV['PUBSTACK_PATH'] . '/.vagrant';
 
-$app = new Symfony\Component\Console\Application('Pubstack Shell', 'v1.0.0-dev');
+$app = new Symfony\Component\Console\Application('Pubstack Shell', 'v1.0.0');
 $app->add(new nbcutechnology\Pubstack\ConfigureCommand());
 $app->add(new nbcutechnology\Pubstack\HaltCommand());
 $app->add(new nbcutechnology\Pubstack\InitCommand());
