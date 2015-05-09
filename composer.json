@@ -1,0 +1,24 @@
+{
+    "name": "nbcutechnology/pubstack-shell",
+    "description": "Provides a globally accessible command for working with Pubstack.",
+    "license": "BSD",
+    "authors": [
+        {
+            "name": "Cameron Eagans",
+            "email": "me@cweagans.net"
+        }
+    ],
+    "require": {
+      "php": ">=5.4",
+      "symfony/console": "~2.0",
+      "symfony/process": "~2.0"
+    },
+    "autoload": {
+      "psr-4": {
+        "nbcutechnology\\Pubstack\\": "src/"
+      }
+    },
+    "bin": [
+      "pubstack"
+    ]
+}
