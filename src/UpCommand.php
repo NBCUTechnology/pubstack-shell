@@ -21,11 +21,18 @@ class UpCommand extends Command {
    *
    * @param InputInterface $input
    * @param OutputInterface $output
+   *
+   * @return null
    */
   public function execute(InputInterface $input, OutputInterface $output) {
     $process = new Process('vagrant up', $_ENV['PUBSTACK_PATH'], array_merge($_SERVER, $_ENV), null, null);
     $process->run(function($type, $line) use ($output) {
-      $output->write($line);
+      if ($type === Process::ERR) {
+        $output->writeln("<error>{$line}</error>");
+      }
+      else {
+        $output->write($line);
+      }
     });
   }
 }
