@@ -26,7 +26,6 @@ class UpCommand extends Command {
    */
   public function execute(InputInterface $input, OutputInterface $output) {
     $process = new Process('vagrant up', $_ENV['PUBSTACK_PATH'], array_merge($_SERVER, $_ENV), null, null);
-    if (!$process->isSuccessful())
     $process->run(function($type, $line) use ($output) {
       if ($type === Process::ERR) {
         $output->writeln("<error>{$line}</error>");
